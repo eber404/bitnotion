@@ -44,11 +44,11 @@ func main() {
 		log.Println("Notion page with Dollar quote updated successfully.")
 	}
 
-	updateBitcoinQuote()
-	updateDollarQuote()
+	go updateBitcoinQuote()
+	go updateDollarQuote()
 
-	const REFRESH_TIME = 5
-	ticker := time.NewTicker(REFRESH_TIME * time.Minute)
+	const REFRESH_TIME = 5 * time.Minute
+	ticker := time.NewTicker(REFRESH_TIME)
 	defer ticker.Stop()
 
 	for range ticker.C {
